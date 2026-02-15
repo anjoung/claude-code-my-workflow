@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 Session Log Reminder Hook for Claude Code
 
@@ -9,17 +9,18 @@ and reminds it to update the session log.
 Adapted from: https://gist.github.com/michaelewens/9a1bc5a97f3f9bbb79453e5b682df462
 
 Usage (in .claude/settings.json):
-    "Stop": [{ "hooks": [{ "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/log-reminder.py" }] }]
+    "Stop": [{ "hooks": [{ "type": "command", "command": "python .claude/hooks/log-reminder.py" }] }]
 """
 
 import json
 import sys
 import hashlib
+import tempfile
 from pathlib import Path
 from datetime import datetime
 
 THRESHOLD = 15
-STATE_DIR = Path("/tmp/claude-log-reminder")
+STATE_DIR = Path(tempfile.gettempdir()) / "claude-log-reminder"
 
 
 def get_project_dir():

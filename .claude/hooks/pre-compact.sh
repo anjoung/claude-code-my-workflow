@@ -4,8 +4,12 @@
 INPUT=$(cat)
 TRIGGER=$(echo "$INPUT" | jq -r '.trigger // "unknown"')
 
+# Derive project root from this script's location
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
 # Find most recent session log
-LOG_DIR="$CLAUDE_PROJECT_DIR/quality_reports/session_logs"
+LOG_DIR="$PROJECT_DIR/quality_reports/session_logs"
 LATEST_LOG=$(ls -t "$LOG_DIR"/*.md 2>/dev/null | head -1)
 
 if [ -n "$LATEST_LOG" ]; then
