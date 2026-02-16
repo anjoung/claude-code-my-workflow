@@ -41,6 +41,16 @@ Rscript scripts/R/FILENAME.R 2>&1 | tail -20
 - Verify output files (PDF, RDS) were created
 - Check file sizes > 0
 
+### For `.do` files (Stata scripts):
+```bash
+stata -e do scripts/Stata/FILENAME.do 2>&1 | tail -20
+```
+- Check exit code and grep log for `r(` error codes
+- Verify log file created in `output/logs/`
+- Verify table output (.tex, .csv) in `output/tables/`
+- Verify figure output (.pdf, .png) in `output/figures/`
+- Check file sizes > 0
+
 ### For `.svg` files (TikZ diagrams):
 - Read the file and check it starts with `<?xml` or `<svg`
 - Verify file size > 100 bytes (not empty/corrupted)

@@ -1,6 +1,7 @@
 ---
 paths:
   - "scripts/**/*.R"
+  - "scripts/**/*.do"
   - "Figures/**/*.R"
 ---
 
@@ -12,7 +13,7 @@ paths:
 
 ## Phase 1: Inventory & Baseline
 
-Before writing any R code:
+Before writing any replication code (R or Stata):
 
 - [ ] Read the paper's replication README
 - [ ] Inventory replication package: language, data files, scripts, outputs
@@ -26,16 +27,16 @@ Before writing any R code:
 | Main ATT | Table 2, Col 3 | -1.632 | (0.584) | Primary specification |
 ```
 
-- [ ] Store targets in `quality_reports/LectureNN_replication_targets.md` or as RDS
+- [ ] Store targets in `quality_reports/LectureNN_replication_targets.md` (or as RDS/.dta)
 
 ---
 
 ## Phase 2: Translate & Execute
 
-- [ ] Follow `r-code-conventions.md` for all R coding standards
+- [ ] Follow `r-code-conventions.md` (R) or `stata-code-conventions.md` (Stata) for coding standards
 - [ ] Translate line-by-line initially -- don't "improve" during replication
 - [ ] Match original specification exactly (covariates, sample, clustering, SE computation)
-- [ ] Save all intermediate results as RDS
+- [ ] Save all intermediate results as RDS (R) or .dta (Stata)
 
 ### Stata to R Translation Pitfalls
 
@@ -47,6 +48,16 @@ Before writing any R code:
 | `areg y x, absorb(id)` | `feols(y ~ x \| id)` | Check demeaning method matches |
 | `probit` for PS | `glm(family=binomial(link="probit"))` | R default logit != Stata default in some commands |
 | `bootstrap, reps(999)` | Depends on method | Match seed, reps, and bootstrap type exactly |
+
+### R to Stata Translation Pitfalls
+
+| R | Stata | Trap |
+|---|-------|------|
+| `feols(y ~ x \| id)` | `reghdfe y x, absorb(id)` | `reghdfe` requires `ssc install`; built-in `areg` handles only one FE |
+| `set.seed(42)` | `set seed 42` + `set sortseed 42` | Stata also needs `set sortseed` for deterministic sort order |
+| `NA` handling (automatic) | `.` missing values | Stata silently treats `.` as +infinity in comparisons — use `if !mi(var)` |
+| `factor(var)` in formula | `i.var` prefix | Stata requires explicit factor notation |
+| `robust` SEs via `vcov` | `, robust` or `, vce(robust)` | Default SE methods differ — always specify explicitly in both |
 
 ---
 
@@ -74,7 +85,7 @@ Save to `quality_reports/LectureNN_replication_report.md`:
 # Replication Report: [Paper Author (Year)]
 **Date:** [YYYY-MM-DD]
 **Original language:** [Stata/R/etc.]
-**R translation:** [script path]
+**Replication script:** [script path]
 
 ## Summary
 - **Targets checked / Passed / Failed:** N / M / K
@@ -89,7 +100,7 @@ Save to `quality_reports/LectureNN_replication_report.md`:
 - **Target:** X | **Investigation:** ... | **Resolution:** ...
 
 ## Environment
-- R version, key packages (with versions), data source
+- Language version (R version / Stata version), key packages (with versions), data source
 ```
 
 ---

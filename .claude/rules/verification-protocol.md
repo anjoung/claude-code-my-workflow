@@ -3,6 +3,7 @@ paths:
   - "Slides/**/*.tex"
   - "Quarto/**/*.qmd"
   - "docs/**"
+  - "scripts/**/*.do"
 ---
 
 # Task Completion Verification Protocol
@@ -35,6 +36,14 @@ paths:
 1. Run `Rscript scripts/R/filename.R`
 2. Verify output files (PDF, RDS) were created with non-zero size
 3. Spot-check estimates for reasonable magnitude
+
+## For Stata Scripts:
+1. Run `stata -e do scripts/Stata/filename.do`
+2. Verify log file created in `output/logs/` with non-zero size
+3. Verify table output (.tex, .csv) created in `output/tables/`
+4. Verify figure output (.pdf, .png) created in `output/figures/`
+5. Check log for `r(###)` error codes — any non-zero return code is a failure
+6. Spot-check estimates for reasonable magnitude
 
 ## Common Pitfalls:
 - **PDF images in HTML**: Browsers don't render PDFs inline → convert to SVG

@@ -72,6 +72,7 @@ Browsers cannot render PDF images inline.
 1. **Is it a TikZ diagram?** → Reference extracted SVG: `![](../Figures/LectureN/tikz_exact_XX.svg){fig-align="center"}`
 2. **Is it a complex faceted grid?** → Convert PDF to SVG, reference as static
 3. **Is it an R-generated plot with data in RDS?** → Write a `{r}` chunk with plotly code reading from the RDS file
+3b. **Is it a Stata-generated figure?** → Reference the exported SVG/PNG: `![](../output/figures/name.svg){fig-align="center"}`
 4. **Otherwise:** Convert to SVG and reference statically
 
 **Plotly pattern (for R-generated plots):**
@@ -89,6 +90,10 @@ Browsers cannot render PDF images inline.
 ### R Code Blocks
 - `\begin{lstlisting}[style=Rstyle]` → ` ```{r} ` with `eval: false`, `echo: true`
 - Do NOT use `code-fold: false` on chunks (it suppresses display). Use `echo: true` explicitly.
+
+### Stata Code Blocks
+- `\begin{lstlisting}[style=Statastyle]` or Stata code in `verbatim` → ` ```{stata} ` with `eval: false`, `echo: true`
+- If no Stata-specific lstlisting style exists, use ` ```stata ` (fenced code block, no execution)
 
 ### Tables
 - `\begin{tabular}{lcc}...\end{tabular}` → Markdown pipe tables

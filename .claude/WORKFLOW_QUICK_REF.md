@@ -52,8 +52,8 @@ Repeat
 
 <!-- Replace with YOUR project's locked-in preferences -->
 
-- [YOUR PATH CONVENTION] (e.g., `here::here()` for R, relative paths for LaTeX)
-- [YOUR SEED CONVENTION] (e.g., `set.seed()` once at top for stochastic code)
+- [YOUR PATH CONVENTION] (e.g., `here::here()` for R, `global root "."` for Stata, relative paths for LaTeX)
+- [YOUR SEED CONVENTION] (e.g., `set.seed()` once at top for R; `set seed` + `set sortseed` for Stata)
 - [YOUR FIGURE STANDARDS] (e.g., white bg, 300 DPI, custom theme)
 - [YOUR COLOR PALETTE] (e.g., institutional colors)
 - [YOUR TOLERANCE THRESHOLDS] (e.g., 1e-6 for point estimates)

@@ -31,6 +31,7 @@
       "Bash(pdf2svg *)",
       "Bash(quarto render *)",
       "Bash(Rscript *)",
+      "Bash(stata *)",
       "Bash(python *)",
       "Bash(./scripts/sync_to_docs.sh *)",
       "Bash(./scripts/sync_to_docs.sh)",

@@ -55,9 +55,10 @@ Create a beautiful, pedagogically excellent Beamer lecture deck.
 - Quality checks during drafting
 
 ### Phase 4: Figures & Code
-- R scripts following conventions
+- R scripts following `r-code-conventions.md`; Stata .do files following `stata-code-conventions.md`
 - TikZ diagrams in Beamer source (single source of truth)
-- Save RDS for future Quarto integration
+- Save RDS (R) or .dta (Stata) for future Quarto integration
+- Stata tables via `esttab` → `.tex` for direct Beamer inclusion
 
 ### Phase 5: Polish & Compile
 - Full 3-pass compilation
