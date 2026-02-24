@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+
+      "Bash(python *)",
+      "Bash(pip *)",
+
+      "Bash(Rscript *)",
+      "Bash(R *)",
+
+      "Bash(\"/c/Program Files/StataNow19/StataSE-64.exe\" *)",
+      "Bash(\"C:/Program Files/StataNow19/StataSE-64.exe\" *)",
+
+      "Bash(xelatex *)",
+      "Bash(bibtex *)",
+      "Bash(latexmk *)",
+      "Bash(TEXINPUTS=*)",
+      "Bash(BIBINPUTS=*)",
+      "Bash(pdfinfo *)",
+      "Bash(pdf2svg *)",
+
+      "Bash(quarto *)",
+
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(sort *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(chmod *)",
+      "Bash(start *)",
+      "Bash(open *)",
+      "Bash(for *)",
+      "Bash(which *)",
+      "Bash(where *)",
+      "Bash(echo *)",
+      "Bash(timeout *)",
+
+      "Bash(powershell.exe *)",
+      "Bash(powershell *)",
+      "Bash(cmd.exe *)",
+      "Bash(cmd *)",
+      "Bash(tasklist *)",
+      "Bash(findstr *)",
+      "Bash(dir *)",
+
+      "Bash(curl *)",
+      "Bash(gs *)",
+      "Bash(pdftk *)",
+
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(git push * --force *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)"
+    ]
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true
+  }
+}

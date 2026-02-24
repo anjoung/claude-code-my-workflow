@@ -47,8 +47,6 @@ paths:
 | Critical | Hardcoded absolute paths | -20 |
 | Major | Missing `set seed` / `set sortseed` | -10 |
 | Major | Missing `log using` / `log close` | -5 |
-| Major | `merge` without `_merge` diagnostics | -5 |
-| Major | `#delimit ;` usage | -3 |
 | Minor | Global macro where local suffices | -1 |
 
 ## Beamer Slides (.tex)

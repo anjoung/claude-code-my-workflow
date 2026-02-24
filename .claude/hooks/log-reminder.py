@@ -13,6 +13,7 @@ Usage (in .claude/settings.json):
 """
 
 import json
+import subprocess
 import sys
 import hashlib
 import tempfile
@@ -127,9 +128,39 @@ def main():
     sys.exit(0)
 
 
+def send_notification(title="Claude Code", message="Claude Code has finished"):
+    """Send a desktop notification (best-effort, fail silently)."""
+    try:
+        import shutil
+        if shutil.which("osascript"):
+            # macOS
+            subprocess.run(
+                ["osascript", "-e", f'display notification "{message}" with title "{title}"'],
+                capture_output=True, timeout=5,
+            )
+        elif shutil.which("powershell.exe"):
+            # Windows
+            ps_cmd = (
+                "Add-Type -AssemblyName System.Windows.Forms; "
+                "$n = New-Object System.Windows.Forms.NotifyIcon; "
+                "$n.Icon = [System.Drawing.SystemIcons]::Information; "
+                "$n.Visible = $true; "
+                f"$n.ShowBalloonTip(5000, '{title}', '{message}', 'Info'); "
+                "Start-Sleep -Seconds 1; "
+                "$n.Dispose()"
+            )
+            subprocess.run(
+                ["powershell.exe", "-NoProfile", "-Command", ps_cmd],
+                capture_output=True, timeout=10,
+            )
+    except Exception:
+        pass
+
+
 if __name__ == "__main__":
     try:
         main()
+        send_notification("Claude Code", "Claude Code has finished")
     except Exception:
         # Fail open — never block Claude due to a hook bug
         sys.exit(0)
